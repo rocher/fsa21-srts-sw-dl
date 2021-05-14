@@ -1,0 +1,16 @@
+#+Title:FSA21 - SRTS - SW Exercise
+
+** Description
+The objective is to implement a program for sorting a list of integers in
+ascending order in a reliable way by employing either of the SW redundancy
+principle of /N-Version Programming/ with 3 diverse versions and majority
+voting.
+
+** Installation
+Simply use the 'gprbuild' command to compile the program. No installation
+instructions required. Run it from the `bin` directory:
+
+#+begin_src bash
+$ gprbuild
+$ ./bin/n_sort_voting
+#+end_src
