@@ -6,9 +6,21 @@ ascending order in a reliable way by employing either of the SW redundancy
 principle of /N-Version Programming/ with 3 diverse versions and majority
 voting.
 
+** Environment Setup
+This application has been developed, tested and compiled in Ubuntu-20.04 and
+GNAT Ada compiler version 9. For testing, the project uses GNATtest, which is
+contained in the =asis-programs= package and must be installed separately. The
+whole environment can be installed with:
+
+#+begin_src bash
+$ apt install gnat gnat-gps asis-programs
+#+end_src
+
+The package =gnat-gps= is highly recommended for developers.
+
 ** Installation
 Simply use the 'gprbuild' command to compile the program. No installation
-instructions required. Run it from the `bin` directory:
+instructions required. Run it from the =bin= directory:
 
 #+begin_src bash
 $ gprbuild
