@@ -13,16 +13,31 @@ contained in the =asis-programs= package and must be installed separately. The
 whole environment can be installed with:
 
 #+begin_src bash
-$ apt install gnat gnat-gps asis-programs
+  $ apt install gnat gnat-gps asis-programs
 #+end_src
 
 The package =gnat-gps= is highly recommended for developers.
+
+** Unit Test Environment
+By using =gnattest= and =aunit= we adhere to the directory structures used by
+these tools. To simplify unit test development we prefer to keep the same
+sub-directory structure of the =src= directory. Thus, the generation of the test
+harness and unit test stubs is as:
+
+#+begin_src bash
+  $ cd <project_rot>
+  $ gnattest -P n_sort_voting.gpr
+#+end_src
+
+Necessary setting are specified in the =Gnattest= package of the
+=n_sort_voting.gpr= project file.
 
 ** Installation
 Simply use the 'gprbuild' command to compile the program. No installation
 instructions required. Run it from the =bin= directory:
 
 #+begin_src bash
-$ gprbuild
-$ ./bin/n_sort_voting
+  $ cd <project_rot>
+  $ gprbuild
+  $ ./bin/n_sort_voting
 #+end_src

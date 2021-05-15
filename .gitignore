@@ -1,2 +1,8 @@
-bin
-obj
+bin/
+obj/*
+
+!obj/gnattest/
+obj/gnattest/*/*.ali
+obj/gnattest/*/*.o
+obj/gnattest/*/*.stderr
+obj/gnattest/*/*.stdout

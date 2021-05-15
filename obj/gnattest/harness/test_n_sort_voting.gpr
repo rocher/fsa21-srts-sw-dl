@@ -1,0 +1,16 @@
+with "aunit";
+with "gnattest_common.gpr";
+with "../../../n_sort_voting.gpr";
+project test_n_sort_voting is
+
+   for Source_Dirs use
+     ("../tests/",
+      "../tests/sorting/",
+      "../tests/ui/",
+      "../tests/voting/",
+      "common");
+
+   for Languages use Gnattest_Common'Languages & ("Ada");
+   package Compiler renames Gnattest_Common.Compiler;
+
+end test_n_sort_voting;

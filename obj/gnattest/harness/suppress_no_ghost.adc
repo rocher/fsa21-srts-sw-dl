@@ -1,0 +1,2 @@
+pragma Assertion_Policy (Pre => Ignore);
+pragma Assertion_Policy (Post => Ignore);

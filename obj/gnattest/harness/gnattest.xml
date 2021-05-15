@@ -1,0 +1,87 @@
+<tests_mapping mode="monolith">
+   <unit source_file="francesc_implementation.ads">
+      <test_unit target_file="francesc_implementation-francesc_sorting_algorithm_test_data-francesc_sorting_algorithm_tests.ads">
+         <setup file="francesc_implementation-francesc_sorting_algorithm_test_data.adb" name="Set_Up" line="9"  column="4"/>
+         <teardown file="francesc_implementation-francesc_sorting_algorithm_test_data.adb" name="Tear_Down" line="14"  column="4"/>
+         <tested name="Sort" line="9" column="14">
+            <test file="francesc_implementation-francesc_sorting_algorithm_test_data-francesc_sorting_algorithm_tests.adb" line="39" column="1" name="Test_Sort_573feb" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <tested name="Inject_Error" line="13" column="14">
+            <test file="francesc_implementation-francesc_sorting_algorithm_test_data-francesc_sorting_algorithm_tests.adb" line="60" column="1" name="Test_Inject_Error_7e0b0c" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <dangling>
+         </dangling>
+      </test_unit>
+   </unit>
+   <unit source_file="jordi_implementation.ads">
+      <test_unit target_file="jordi_implementation-jordi_sorting_algorithm_test_data-jordi_sorting_algorithm_tests.ads">
+         <setup file="jordi_implementation-jordi_sorting_algorithm_test_data.adb" name="Set_Up" line="9"  column="4"/>
+         <teardown file="jordi_implementation-jordi_sorting_algorithm_test_data.adb" name="Tear_Down" line="14"  column="4"/>
+         <tested name="Sort" line="9" column="14">
+            <test file="jordi_implementation-jordi_sorting_algorithm_test_data-jordi_sorting_algorithm_tests.adb" line="39" column="1" name="Test_Sort_573feb" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <tested name="Inject_Error" line="13" column="14">
+            <test file="jordi_implementation-jordi_sorting_algorithm_test_data-jordi_sorting_algorithm_tests.adb" line="60" column="1" name="Test_Inject_Error_7e0b0c" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <dangling>
+         </dangling>
+      </test_unit>
+   </unit>
+   <unit source_file="raquel_implementation.ads">
+      <test_unit target_file="raquel_implementation-raquel_sorting_algorithm_test_data-raquel_sorting_algorithm_tests.ads">
+         <setup file="raquel_implementation-raquel_sorting_algorithm_test_data.adb" name="Set_Up" line="9"  column="4"/>
+         <teardown file="raquel_implementation-raquel_sorting_algorithm_test_data.adb" name="Tear_Down" line="14"  column="4"/>
+         <tested name="Sort" line="9" column="14">
+            <test file="raquel_implementation-raquel_sorting_algorithm_test_data-raquel_sorting_algorithm_tests.adb" line="39" column="1" name="Test_Sort_573feb" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <tested name="Inject_Error" line="13" column="14">
+            <test file="raquel_implementation-raquel_sorting_algorithm_test_data-raquel_sorting_algorithm_tests.adb" line="60" column="1" name="Test_Inject_Error_7e0b0c" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <dangling>
+         </dangling>
+      </test_unit>
+   </unit>
+   <unit source_file="inputs.ads">
+      <test_unit target_file="inputs-test_data-tests.ads">
+         <setup file="inputs-test_data.adb" name="Set_Up" line="8"  column="4"/>
+         <teardown file="inputs-test_data.adb" name="Tear_Down" line="14"  column="4"/>
+         <tested name="Read_Array_Length" line="5" column="13">
+            <test file="inputs-test_data-tests.adb" line="39" column="1" name="Test_Read_Array_Length_e9ef85" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <tested name="Read_Integer_List" line="7" column="14">
+            <test file="inputs-test_data-tests.adb" line="60" column="1" name="Test_Read_Integer_List_0b63c8" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <tested name="Read_Errors" line="9" column="14">
+            <test file="inputs-test_data-tests.adb" line="81" column="1" name="Test_Read_Errors_08380d" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <tested name="More_Loops" line="11" column="13">
+            <test file="inputs-test_data-tests.adb" line="102" column="1" name="Test_More_Loops_f28114" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <dangling>
+         </dangling>
+      </test_unit>
+   </unit>
+   <unit source_file="outputs.ads">
+      <test_unit target_file="outputs-test_data-tests.ads">
+         <setup file="outputs-test_data.adb" name="Set_Up" line="8"  column="4"/>
+         <teardown file="outputs-test_data.adb" name="Tear_Down" line="14"  column="4"/>
+         <tested name="Print_Results" line="5" column="14">
+            <test file="outputs-test_data-tests.adb" line="39" column="1" name="Test_Print_Results_edad11" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <dangling>
+         </dangling>
+      </test_unit>
+   </unit>
+   <unit source_file="voter.ads">
+      <test_unit target_file="voter-test_data-tests.ads">
+         <setup file="voter-test_data.adb" name="Set_Up" line="8"  column="4"/>
+         <teardown file="voter-test_data.adb" name="Tear_Down" line="14"  column="4"/>
+         <tested name="Compute_Solution" line="5" column="13">
+            <test file="voter-test_data-tests.adb" line="39" column="1" name="Test_Compute_Solution_75f86f" timestamp="2021-05-15 16:45:13"/>
+         </tested>
+         <dangling>
+         </dangling>
+      </test_unit>
+   </unit>
+   <additional_tests/>
+</tests_mapping>
