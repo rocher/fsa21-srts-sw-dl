@@ -7,7 +7,8 @@ project N_Sort_Voting is
    for Main use ("n_sort_voting.adb");
 
    package Gnattest is
-     for Tests_Root use "gnattest/tests";
+      for Tests_Root use "gnattest/tests";
    end Gnattest;
 
 end N_Sort_Voting;
+

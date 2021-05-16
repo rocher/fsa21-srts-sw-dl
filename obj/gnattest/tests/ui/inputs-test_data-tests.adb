@@ -7,6 +7,7 @@
 
 with AUnit.Assertions; use AUnit.Assertions;
 with System.Assertions;
+with Ada.Text_IO; use Ada.Text_IO;
 
 --  begin read only
 --  id:2.2/00/
@@ -38,12 +39,19 @@ package body Inputs.Test_Data.Tests is
 --  end read only
 
       pragma Unreferenced (Gnattest_T);
-
+      Length : Natural;
    begin
+      Put (ASCII.ESC & "[1;31m[ TEST : enter  0 ] " & ASCII.ESC & "[0m");
+      Length := Inputs.Read_Array_Length;
+      AUnit.Assertions.Assert (Length = 0, "you entered " & Length'Image & " instead of 0");
 
-      AUnit.Assertions.Assert
-        (Gnattest_Generated.Default_Assert_Value,
-         "Test not implemented.");
+      Put (ASCII.ESC & "[1;31m[ TEST : enter  5 ] " & ASCII.ESC & "[0m");
+      Length := Inputs.Read_Array_Length;
+      AUnit.Assertions.Assert (Length = 5, "you entered " & Length'Image & " instead of 5");
+
+      Put (ASCII.ESC & "[1;31m[ TEST : enter 10 ] " & ASCII.ESC & "[0m");
+      Length := Inputs.Read_Array_Length;
+      AUnit.Assertions.Assert (Length = 10, "you entered " & Length'Image & " instead of 10");
 
 --  begin read only
    end Test_Read_Array_Length;
@@ -59,12 +67,38 @@ package body Inputs.Test_Data.Tests is
 --  end read only
 
       pragma Unreferenced (Gnattest_T);
-
+      List : List_Of_Integers;
+      Empty_List : constant List_Of_Integers := (Length => 0,
+                                                 Elements => (others => 0));
    begin
 
-      AUnit.Assertions.Assert
-        (Gnattest_Generated.Default_Assert_Value,
-         "Test not implemented.");
+      List := Empty_List;
+      List.Length := 0;
+      Read_Integer_List (List);
+      AUnit.Assertions.Assert (List = Empty_List, "List is not empty");
+
+      List := Empty_List;
+      List.Length := 1;
+      Put_Line (ASCII.ESC & "[1;31m[ TEST : enter 42 ] " & ASCII.ESC & "[0m");
+      Read_Integer_List (List);
+      AUnit.Assertions.Assert (List =
+                                 List_Of_Integers'(Length => 1,
+                                                   Elements => (1 => 42,
+                                                                others => 0)),
+                               "List is not {42}");
+      List := Empty_List;
+      List.Length := 5;
+      Put_Line (ASCII.ESC & "[1;31m[ TEST : enter 5, 4, 3, 2, 1 ] " & ASCII.ESC & "[0m");
+      Read_Integer_List (List);
+      AUnit.Assertions.Assert (List =
+                                 List_Of_Integers'(Length => 5,
+                                                   Elements => (1 => 5,
+                                                                2 => 4,
+                                                                3 => 3,
+                                                                4 => 2,
+                                                                5 => 1,
+                                                                others => 0)),
+                               "List is not {5, 4, 3, 2, 1}");
 
 --  begin read only
    end Test_Read_Integer_List;
@@ -80,12 +114,24 @@ package body Inputs.Test_Data.Tests is
 --  end read only
 
       pragma Unreferenced (Gnattest_T);
-
+      List : List_Of_Errors;
+      Empty_List : constant List_Of_Errors := (Raquel   => None,
+                                               Jordi    => None,
+                                               Francesc => None);
    begin
 
-      AUnit.Assertions.Assert
-        (Gnattest_Generated.Default_Assert_Value,
-         "Test not implemented.");
+      List := Empty_List;
+      Put_Line (ASCII.ESC & "[1;31m[ TEST : enter n, n, n ] " & ASCII.ESC & "[0m");
+      Read_Errors (Inject_Into => List);
+      AUnit.Assertions.Assert (List = Empty_List, "List is not {None, None, None}");
+
+      List := Empty_List;
+      Put_Line (ASCII.ESC & "[1;31m[ TEST : enter w, d, o ] " & ASCII.ESC & "[0m");
+      Read_Errors (Inject_Into => List);
+      AUnit.Assertions.Assert (List = List_Of_Errors'(Raquel  => Wrong_Order,
+                                                      Jordi   => Duplication,
+                                                     Francesc => Omission),
+                               "List is not {Wrong_Order, Duplication, Omission}");
 
 --  begin read only
    end Test_Read_Errors;
@@ -104,9 +150,11 @@ package body Inputs.Test_Data.Tests is
 
    begin
 
-      AUnit.Assertions.Assert
-        (Gnattest_Generated.Default_Assert_Value,
-         "Test not implemented.");
+      Put (ASCII.ESC & "[1;31m[ TEST : enter y ] " & ASCII.ESC & "[0m");
+      AUnit.Assertions.Assert (More_Loops = True, "you did not enter 'y'");
+
+      Put (ASCII.ESC & "[1;31m[ TEST : enter n ] " & ASCII.ESC & "[0m");
+      AUnit.Assertions.Assert (More_Loops = False, "you did not enter 'n'");
 
 --  begin read only
    end Test_More_Loops;

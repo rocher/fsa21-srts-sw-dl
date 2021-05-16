@@ -1,19 +1,6 @@
 with Ada.Numerics.Discrete_Random;
-with Ada.Text_IO; use Ada.Text_IO;
 
 package body Francesc_Implementation is
-
-   --
-   -- used only for debugging purposes
-   --
-   procedure Print_List (List : List_Of_Integers) is
-   begin
-      Put_Line ("Francesc sort result:");
-      for I in 1 .. List.Length loop
-         Put (List.Elements (I)'Image & ", ");
-      end loop;
-      Put_Line (" length =" & List.Length'Image);
-   end Print_List;
 
    procedure Swap (X, Y : in out Integer) is
       T : Integer := X;
@@ -68,7 +55,6 @@ package body Francesc_Implementation is
       if List.Length >= 2 then
          Slow_Sort (List.Elements, 1, List.Length);
       end if;
-      Print_List (List);
    end;
 
    overriding
@@ -104,7 +90,6 @@ package body Francesc_Implementation is
                List.Length := List.Length + 1;
                for I in reverse Index+1 .. List.Length loop
                   List.Elements (I) := List.Elements (I-1);
-                  Put ("I="&I'Image);Print_List (List);
                end loop;
             end if;
 
@@ -120,8 +105,6 @@ package body Francesc_Implementation is
 
          when None => null;
       end case;
-
-      Print_List (List);
    end;
 
 end Francesc_Implementation;

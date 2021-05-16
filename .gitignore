@@ -6,3 +6,4 @@ obj/gnattest/*/*.ali
 obj/gnattest/*/*.o
 obj/gnattest/*/*.stderr
 obj/gnattest/*/*.stdout
+obj/gnattest/harness/test_runner*
