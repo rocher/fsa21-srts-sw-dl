@@ -3,6 +3,7 @@
 
 --  begin read only
 with Francesc_Implementation.Francesc_Sorting_Algorithm_Test_Data.Francesc_Sorting_Algorithm_Tests.Suite;
+with Implementation_Interface.Test_Data.Tests.Suite;
 with Jordi_Implementation.Jordi_Sorting_Algorithm_Test_Data.Jordi_Sorting_Algorithm_Tests.Suite;
 with Raquel_Implementation.Raquel_Sorting_Algorithm_Test_Data.Raquel_Sorting_Algorithm_Tests.Suite;
 with Inputs.Test_Data.Tests.Suite;
@@ -17,6 +18,7 @@ package body Gnattest_Main_Suite is
    begin
 
       Add_Test (Result'Access, Francesc_Implementation.Francesc_Sorting_Algorithm_Test_Data.Francesc_Sorting_Algorithm_Tests.Suite.Suite);
+      Add_Test (Result'Access, Implementation_Interface.Test_Data.Tests.Suite.Suite);
       Add_Test (Result'Access, Jordi_Implementation.Jordi_Sorting_Algorithm_Test_Data.Jordi_Sorting_Algorithm_Tests.Suite.Suite);
       Add_Test (Result'Access, Raquel_Implementation.Raquel_Sorting_Algorithm_Test_Data.Raquel_Sorting_Algorithm_Tests.Suite.Suite);
       Add_Test (Result'Access, Inputs.Test_Data.Tests.Suite.Suite);

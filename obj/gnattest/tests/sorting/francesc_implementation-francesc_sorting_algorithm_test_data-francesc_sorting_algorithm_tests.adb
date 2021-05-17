@@ -88,12 +88,12 @@ package body Francesc_Implementation.Francesc_Sorting_Algorithm_Test_Data.France
 
       List := List_Of_Integers'(Length => 7,
                                 Elements => (1 => 100,
-                                             2 => 25,
+                                             2 =>  25,
                                              3 => -33,
-                                             4 => 0,
-                                             5 => 12,
+                                             4 =>   0,
+                                             5 =>  12,
                                              6 => -12,
-                                             7 => 77,
+                                             7 =>  77,
                                              others => 0));
       Francesc_Impl.Sort (List);
       AUnit.Assertions.Assert
@@ -217,7 +217,7 @@ package body Francesc_Implementation.Francesc_Sorting_Algorithm_Test_Data.France
       Francesc_Impl.Inject_Error (List, Wrong_Order);
       AUnit.Assertions.Assert (List.Length = L.Length
                                and not Is_Sorted (List),
-                               "wrong orther not injected");
+                               "wrong order not injected");
 
       List := L;
       Francesc_Impl.Inject_Error (List, Duplication);
@@ -251,7 +251,7 @@ package body Francesc_Implementation.Francesc_Sorting_Algorithm_Test_Data.France
       Francesc_Impl.Inject_Error (List, Wrong_Order);
       AUnit.Assertions.Assert (List.Length = L.Length
                                and not Is_Sorted (List),
-                               "wrong orther not injected");
+                               "wrong order not injected");
 
       List := L;
       Francesc_Impl.Inject_Error (List, Duplication);
