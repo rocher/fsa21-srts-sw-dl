@@ -6,13 +6,15 @@ package Types is
    --  type of possible injected errors
    type Error_Name is (None, Wrong_Order, Duplication, Omission);
 
+   --  length of lists to sort must be less or equal to 10
+   subtype List_Length is Natural range 0 .. 10;
+
    --  list of integers to sort
-   type Array_Of_Integers is array (1 .. 10) of Integer;
+   type Array_Of_Integers is array (1 .. List_Length'Last) of Integer;
 
    --  input data for the sorting algorithms
-   --  all elements and length are set to zero, and no error injected
    type List_Of_Integers is record
-      Length   : Natural;
+      Length   : List_Length;
       Elements : Array_Of_Integers;
    end record;
 

@@ -3,9 +3,9 @@ with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 
 package body Inputs is
 
-   function Read_Array_Length return Natural
+   function Read_Array_Length return List_Length
    is
-      Number : Natural;
+      Number : List_Length;
    begin
       Put ("Enter array lenght (0 .. 10): ");
       Get (Number);

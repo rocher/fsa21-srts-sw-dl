@@ -2,13 +2,6 @@ with Ada.Numerics.Discrete_Random;
 
 package body Francesc_Implementation is
 
-   procedure Swap (X, Y : in out Integer) is
-      T : Integer := X;
-   begin
-      X := Y;
-      Y := T;
-   end Swap;
-
    --  This is the implementation of the slowsort algorithm. It uses the
    --  "multiply and surrender" paradigm (completely the opposite of the "divide
    --  and conquer" paradigm). Even in the best case, slowsort is worst than
@@ -49,10 +42,9 @@ package body Francesc_Implementation is
 
    overriding
    procedure Sort (Self : Francesc_Sorting_Algorithm;
-                   List : in out List_Of_Integers)
-   is
+                   List : in out List_Of_Integers) is
    begin
-      if List.Length >= 2 then
+      if 2 <= List.Length then
          Slow_Sort (List.Elements, 1, List.Length);
       end if;
    end;
@@ -62,27 +54,31 @@ package body Francesc_Implementation is
                            List  : in out List_Of_Integers;
                            Which : Error_Name)
    is
-      subtype List_Range is Natural range 1 .. List.Length;
-      package Random_Index is new Ada.Numerics.Discrete_Random (List_Range);
+      subtype Index_Range is Natural range 1 .. List.Length;
+      package Random_Index is new Ada.Numerics.Discrete_Random (Index_Range);
       use Random_Index;
 
-      Index : List_Range;
+      Index : Index_Range;
       RNG   : Random_Index.Generator;
    begin
       case Which is
          when Wrong_Order =>
-            if List.Length >= 2 then
-               declare
-                  I, J : List_Range;
-               begin
-                  loop
-                     I := Random (RNG);
-                     J := Random (RNG);
-                     exit when I /= J;
-                  end loop;
-                  Swap (List.Elements (I), List.Elements (J));
-               end;
-            end if;
+            case List.Length is
+               when 0 => null;
+               when 1 => null;
+               when 2 => Swap (List.Elements (1), List.Elements (2));
+               when others =>
+                  declare
+                     I, J : Index_Range;
+                  begin
+                     loop
+                        I := Random (RNG);
+                        J := Random (RNG);
+                        exit when I /= J;
+                     end loop;
+                     Swap (List.Elements (I), List.Elements (J));
+                  end;
+            end case;
 
          when Duplication =>
             if 1 <= List.Length and List.Length < Array_Of_Integers'Last then
@@ -94,7 +90,7 @@ package body Francesc_Implementation is
             end if;
 
          when Omission =>
-            if List.Length > 0 then
+            if 0 < List.Length then
                Index := Random (RNG);
                for I in Index .. List.Length-1 loop
                   List.Elements (I) := List.Elements (I+1);

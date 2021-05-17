@@ -2,7 +2,7 @@ with Types; use Types;
 
 package Inputs is
 
-   function Read_Array_Length return Natural;
+   function Read_Array_Length return List_Length;
 
    procedure Read_Integer_List (List : in out List_Of_Integers);
 

@@ -6,9 +6,12 @@ project N_Sort_Voting is
    for Exec_Dir use "bin";
    for Main use ("n_sort_voting.adb");
 
+   package Compiler is
+      for Default_Switches ("Ada") use ("-gnata");
+   end Compiler;
+
    package Gnattest is
       for Tests_Root use "gnattest/tests";
    end Gnattest;
 
 end N_Sort_Voting;
-
