@@ -1,100 +1,20 @@
-#+TITLE: N-Version Sorting Algorithm - Design and Implementation
+#+TITLE: N-Version Sorting Algorithm
+#+AUTHOR: Francesc Rocher
 
- #+begin_src plantuml :file Types.png
-   !include https://raw.github.com/rocher/AdaML/master/AdaML.puml
-   scale 1024 width
+* Design
 
-   begin_package_spec("Types")
-     begin_type("Algorithm_Name")
-       enum("Raquel, Jordi, Francesc")
-     end()
-     begin_type("Error_Name")
-       enum("None, Wrong_Order, Duplicates, Omission")
-     end()
-     type("Array_Of_Integers", "array")
-     begin_subtype("List_Length")
-       range("0 .. 10")
-     end()
-     type("List_Of_Integers", "record")
-     type("Named_Lists_Of_Integers", "array")
-     type("List_Of_Errors", "array")
-     begin_type("Type_Of_Solution")
-       enum("All_Ok, One_Fails, Cannot_Decide")
-     end()
-     type("Solution_Of_Voting", "record")
+The overall design is based on this package diagram, where we have
 
-     depends("List_Of_Integers", "Array_Of_Integers", "Elements")
-     depends("List_Of_Integers", "List_Length", "Length")
-     depends("Named_Lists_Of_Integers", "List_Of_Integers", "of")
-     depends("Named_Lists_Of_Integers", "Algorithm_Name", "(..)")
-     depends("List_Of_Errors", "Error_Name", "of")
-     depends("List_Of_Errors", "Algorithm_Name", "(..)")
-     depends("Solution_Of_Voting", "Type_Of_Solution", "Kind")
-     depends("Solution_Of_Voting", "List_Of_Integers", "List")
-     depends("Solution_Of_Voting", "List_Of_Errors", "Errors_Detected")
-     depends("List_Length", "Ada.Natural", "is")
-     depends("Array_Of_Integers", "Ada.Integer", "of")
-   end()
- #+end_src
+  * A package with all the common types used by other packages
+  * A package for sorting activities (interface + implementations)
+  * A package for the user interface
+  * A package to implement the voter
 
- #+RESULTS:
- [[file:Types.png]]
+#+caption: ~Packages~ diagram
+[[Package diagram][Packages.png]]
 
 
-#+begin_src plantuml :file Interface.png
-  !include https://raw.github.com/rocher/AdaML/master/AdaML.puml
-  scale 1200 width
+For a more complete reference, the ~Types~ package is depicted below.
 
-  begin_package("Types")
-    type("Error_Name")
-    type("List_Length")
-    type("List_Of_Errors")
-    type("List_Of_Integers")
-    type("Named_List_Of_Integers")
-    type("Solution_Of_Voting")
-  end()
-
-  begin_package("sorting.Implementation_Interface")
-    type("Sorting_Algorithm", "<i>Interface</i>")
-    procedure("Sort", "in out List_Of_Integers")
-    procedure("Inject_Error", "in out List_Of_Integers, Error_Name")
-  end()
-
-  begin_package("sorting.Raquel")
-  end()
-  begin_package("sorting.Jordi")
-  end()
-  begin_package("sorting.Francesc")
-  end()
-
-  depends("sorting.Raquel", "sorting.Implementation_Interface", "implements")
-  depends("sorting.Jordi", "sorting.Implementation_Interface", "implements")
-  depends("sorting.Francesc", "sorting.Implementation_Interface", "implements")
-
-  begin_package("ui.Inputs")
-    function("Read_Array_Length", "", "List_Length")
-    procedure("Read_Integer_List", "in out List_Of_Integers")
-    procedure("Read_Errors", "in out List_Of_Errors")
-    function("More_Loops", "", "Boolean")
-  end()
-
-  begin_package("voting.Voter")
-    function("Compute_Solution", "Named_List_Of_Integers", "Solution_Of_Voting")
-  end()
-
-  begin_package("ui.Outputs")
-    procedure("Print_Results", "Solution_Of_Voting")
-  end()
-
-  depends("sorting.Implementation_Interface", "Types")
-  depends("voting.Voter", "Types")
-  depends("ui.Inputs", "Types")
-  depends("ui.Outputs", "Types")
-
-  left_right("sorting.Raquel", "sorting.Jordi", "sorting.Francesc")
-  top_down("sorting", "ui", "voting")
-'  top_down("Types", "voting")
-#+end_src
-
-#+RESULTS:
-[[file:Interface.png]]
+#+caption: ~Types~ diagram
+[[Types diagram][Types.png]]

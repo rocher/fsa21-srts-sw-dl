@@ -1,0 +1,39 @@
+' -*- plantuml -*-
+@startuml
+
+!include https://raw.github.com/rocher/AdaML/master/AdaML.puml
+scale 1024 width
+
+begin_package_spec("Types")
+  begin_type("Algorithm_Name")
+    enum("Raquel, Jordi, Francesc")
+  end()
+  begin_type("Error_Name")
+    enum("None, Wrong_Order, Duplicates, Omission")
+  end()
+  type("Array_Of_Integers", "array")
+  begin_subtype("List_Length")
+    range("0 .. 10")
+  end()
+  type("List_Of_Integers", "record")
+  type("Named_Lists_Of_Integers", "array")
+  type("List_Of_Errors", "array")
+  begin_type("Type_Of_Solution")
+    enum("All_Ok, One_Fails, Cannot_Decide")
+  end()
+  type("Solution_Of_Voting", "record")
+
+  depends("List_Of_Integers", "Array_Of_Integers", "Elements")
+  depends("List_Of_Integers", "List_Length", "Length")
+  depends("Named_Lists_Of_Integers", "List_Of_Integers", "of")
+  depends("Named_Lists_Of_Integers", "Algorithm_Name", "(..)")
+  depends("List_Of_Errors", "Error_Name", "of")
+  depends("List_Of_Errors", "Algorithm_Name", "(..)")
+  depends("Solution_Of_Voting", "Type_Of_Solution", "Kind")
+  depends("Solution_Of_Voting", "List_Of_Integers", "List")
+  depends("Solution_Of_Voting", "List_Of_Errors", "Errors_Detected")
+  depends("List_Length", "Ada.Natural", "is")
+  depends("Array_Of_Integers", "Ada.Integer", "of")
+end()
+
+@enduml

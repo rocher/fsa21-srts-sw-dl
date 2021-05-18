@@ -1,0 +1,63 @@
+' -*- plantuml -*-
+@startuml
+
+!include https://raw.github.com/rocher/AdaML/master/AdaML.puml
+scale 1000 width
+
+begin_package("Types")
+  type("Error_Name")
+  type("List_Length")
+  type("List_Of_Errors")
+  type("List_Of_Integers")
+  type("Named_List_Of_Integers")
+  type("Solution_Of_Voting")
+end()
+
+begin_package("sorting.Implementation_Interface")
+  type("Sorting_Algorithm", "<i>Interface</i>")
+  -- abstract --
+  procedure("Sort", "in out List_Of_Integers")
+  procedure("Inject_Error", "in out List_Of_Integers, Error_Name")
+  -- <i>utility subprograms</i> --
+  procedure("Swap", "in out X, Y : Integers")
+  procedure("List", "List_Of_Integers")
+  function("Is_Sorted", "List_Of_Integers", "Boolean")
+  function("Exist_Duplicates", "List_Of_Integers", "Boolean")
+end()
+
+begin_package("sorting.Raquel")
+end()
+depends("sorting.Raquel", "sorting.Implementation_Interface", "implements")
+
+begin_package("sorting.Jordi")
+end()
+depends("sorting.Jordi", "sorting.Implementation_Interface", "implements")
+
+begin_package("sorting.Francesc")
+end()
+depends("sorting.Francesc", "sorting.Implementation_Interface", "implements")
+
+begin_package("ui.Inputs")
+  function("Read_Array_Length", "", "List_Length")
+  procedure("Read_Integer_List", "in out List_Of_Integers")
+  procedure("Read_Errors", "in out List_Of_Errors")
+  function("More_Loops", "", "Boolean")
+end()
+
+begin_package("voting.Voter")
+  function("Compute_Solution", "Named_List_Of_Integers", "Solution_Of_Voting")
+end()
+
+begin_package("ui.Outputs")
+  procedure("Print_Results", "Solution_Of_Voting")
+end()
+
+depends("sorting.Implementation_Interface", "Types")
+depends("voting.Voter", "Types")
+depends("ui.Inputs", "Types")
+depends("ui.Outputs", "Types")
+
+left_right("sorting.Raquel", "sorting.Jordi", "sorting.Francesc")
+top_down("sorting", "ui", "voting")
+
+@enduml
