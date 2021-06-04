@@ -30,7 +30,7 @@ package body Raquel_Implementation is
    procedure Counting_Sort (Input_Arr: in out Array_Of_Integers; 
                             Array_length, Max_val, Min_val : Integer)
    is
-      Intermediate_List, Counting_List : array (0..Max_val+1) of Integer;
+      Intermediate_List, Counting_List : array (1..Max_val-Min_val+1) of Integer;
       Index, Final_Index, counts : Integer;
    begin
             
@@ -38,6 +38,7 @@ package body Raquel_Implementation is
       -- Build one array with all the values from the Minimum to the Maximum and 
       -- another array with the number of times each value is in the input array
       --
+      Put_Line("Length: "&Intermediate_List'Length'Image);
       Index := 1;
       for I in Min_val..Max_val loop
          Intermediate_List(Index) := I;         
