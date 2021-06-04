@@ -19,7 +19,7 @@ begin_package_spec("Types")
   type("Named_Lists_Of_Integers", "array")
   type("List_Of_Errors", "array")
   begin_type("Type_Of_Solution")
-    enum("All_Ok, One_Fails, Cannot_Decide")
+    enum("Ok, Cannot_Decide")
   end()
   type("Solution_Of_Voting", "record")
 

@@ -1,5 +1,8 @@
+auto/
 bin/
 obj/*
+.pdf-view-restore
+*.tex
 
 !obj/gnattest/
 obj/gnattest/*/*.ali

@@ -1,12 +1,20 @@
 #+Title:FSA21 - SRTS - SW Exercise
+#+AUTHOR: Raquel Guitiérrez, Jordi Valls, Francesc Rocher
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [11pt, a4paper]
+#+LATEX_HEADER: \usepackage[margin=1.25in]{geometry}
+#+EXPORT_OPTIONS: toc:nil
+#+OPTIONS: H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil view:nil ltoc:t mouse:underline buttons:0
 
-** Description
+
+* Description
 The objective is to implement a program for sorting a list of integers in
 ascending order in a reliable way by employing either of the SW redundancy
 principle of /N-Version Programming/ with 3 diverse versions and majority
 voting.
 
-** Environment Setup
+* Environment Setup
 This application has been developed, tested and compiled in Ubuntu-20.04 and
 GNAT Ada compiler version 9. For testing, the project uses GNATtest, which is
 contained in the =asis-programs= package and must be installed separately. The
@@ -17,6 +25,16 @@ whole environment can be installed with:
 #+end_src
 
 The package =gnat-gps= is highly recommended for developers.
+
+** Installation
+Simply use the 'gprbuild' command to compile the program. No installation
+instructions required. Run it from the =bin= directory:
+
+#+begin_src bash
+  $ cd <project_rot>
+  $ gprbuild
+  $ ./bin/n_sort_voting
+#+end_src
 
 ** Unit Test Environment
 By using =gnattest= and =aunit= we adhere to the directory structures used by
@@ -32,12 +50,53 @@ harness and unit test stubs is as:
 Necessary setting are specified in the =Gnattest= package of the
 =n_sort_voting.gpr= project file.
 
-** Installation
-Simply use the 'gprbuild' command to compile the program. No installation
-instructions required. Run it from the =bin= directory:
+#+BEGIN_EXPORT latex
+\clearpage
+#+END_EXPORT
 
-#+begin_src bash
-  $ cd <project_rot>
-  $ gprbuild
-  $ ./bin/n_sort_voting
-#+end_src
+
+* Assumptions
+Because the requirements don't impose any constraint regarding efficiency or
+performance in the sorting algorithms to be implemented, some participants
+deliberately decided to choose /experimental/ algorithms. Of course, these
+algorithms are never used in real environments, but are interesting pieces of
+code on how /not/ to implement a sorting algorithm.
+
+Also, the requirements are not clear on how to proceed with the error injection
+of duplicates for lists of length $L=10$. On one hand, all the memory must be
+statically allocated, but on the other hand the injection of duplicates must
+increase the length of the list by one element, so both conditions cannot be
+fulfilled for such lists.
+
+Thus, some constraint that we impose are:
+
+  * You cannot use input integers $\{x_1, x_2, ..\}$ where the distance between
+    maximum and minimum is such that $max(\{x_i\}) - min(\{x_i\}) > StackSize$,
+    where $StackSize$ is the maximum stack size that your system allows per
+    running program. Please find your system limitations with the command
+    =ulimit=. There might be some small discrepancies in this limitation because
+    not only lists are using stack memory, but also other parameters.
+
+  * The voter does not takes into account whether the lists are sorted or not,
+    it just compares them. Thus, in case you enter a list of two integers and
+    injects the wrong order error in two of them, the erroneous one will win
+    (this error injected in a list of two elements simply swaps them).
+
+  * Similarly, if you inject the omission error in three lists of length two,
+    the erroneous one will win.
+
+  * The duplication error can be injected only in lists with length $L \le 9$.
+    This error injected in a list of length $L=10$ has no effect because the
+    lists have statically allocated memory and duplication means increasing the
+    length of the list by one element.
+
+
+* Final Considerations
+Finally, we tried to do at our best with the correctness of the implementation.
+For this, we provide a formal specification in form of a /contract/ in Ada 2012,
+in the file =Implementation_Interface.ads=. Also, we considered that at least
+some parts of the implementation required unit testing.
+
+For example, we provide both a formal contract and unit testing for the error
+injection. If in principle this may seem too much, we must admit that we found a
+bug in the formal specification thanks to the unit testing, and vice-versa.

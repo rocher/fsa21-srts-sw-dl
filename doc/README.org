@@ -1,20 +1,43 @@
 #+TITLE: N-Version Sorting Algorithm
-#+AUTHOR: Francesc Rocher
-
-* Design
-
-The overall design is based on this package diagram, where we have
-
-  * A package with all the common types used by other packages
-  * A package for sorting activities (interface + implementations)
-  * A package for the user interface
-  * A package to implement the voter
-
-#+caption: ~Packages~ diagram
-[[Package diagram][Packages.png]]
+#+AUTHOR: Raquel Guitiérrez, Jordi Valls, Francesc Rocher
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS: [11pt, a4paper]
+#+LATEX_HEADER: \usepackage[margin=1.25in]{geometry}
+#+EXPORT_OPTIONS: toc:nil
+#+OPTIONS: H:2 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS: TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil view:nil ltoc:t mouse:underline buttons:0
 
 
-For a more complete reference, the ~Types~ package is depicted below.
+* Implementation Design
 
-#+caption: ~Types~ diagram
-[[Types diagram][Types.png]]
+The overall design is based on this package diagram (using AdaML), where we have
+
+  * The package =Types= with all the common types used by other packages
+  * The interface =IMplementation_Interface= and the corresponding
+    implementations, for sorting activities
+  * The package =ui= with the user interface
+  * The package =voting= that holds the voter
+
+Diagram below shows all these main packages and their relationships.
+
+#+BEGIN_EXPORT latex
+% \ v space{0.5cm}
+#+END_EXPORT
+
+#+ATTR_LATEX: :width \textwidth
+#+CAPTION: Package diagram
+[[file:Packages.png]]
+
+#+BEGIN_EXPORT latex
+\clearpage
+#+END_EXPORT
+
+* Detailed design
+For a more complete reference, the package ~Types~ is shown in Figure 2.
+
+#+BEGIN_EXPORT latex
+\vspace{0.5cm}
+#+END_EXPORT
+#+ATTR_LATEX: :width \textwidth
+#+CAPTION: Detailed design of package =Types=
+[[file:Types.png]]
