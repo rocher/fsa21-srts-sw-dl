@@ -1,3 +1,4 @@
+with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Numerics.Discrete_Random;
 
 package body Francesc_Implementation is
@@ -101,6 +102,8 @@ package body Francesc_Implementation is
 
          when None => null;
       end case;
+      Put_Line ("Francesc's List:");
+      Print (List);
    end;
 
 end Francesc_Implementation;

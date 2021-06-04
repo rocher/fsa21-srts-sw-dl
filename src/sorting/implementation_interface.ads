@@ -24,7 +24,7 @@ package Implementation_Interface is
                            Which : Error_Name)
    is abstract
      with
-       Pre'Class => Is_Sorted (List) and (not Exist_Duplicates (List)),
+       Pre'Class => Is_Sorted (List),
      Post'Class =>
        (if Which = None then List = List'Old)
      and

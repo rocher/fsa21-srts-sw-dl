@@ -25,13 +25,12 @@ package Types is
    type List_Of_Errors is array (Algorithm_Name) of Error_Name;
 
    --  type of solution provided by the voter
-   type Type_Of_Solution is (All_Ok, One_Fails, Cannot_Decide);
+   type Type_Of_Solution is (Ok, Cannot_Decide);
 
    --  solution given by the voter
    type Solution_Of_Voting is record
       Kind   : Type_Of_Solution;
       List   : List_Of_Integers;   --  the most voted list
-      Errors : List_Of_Errors;     --  errors detected / list
    end record;
 
 end Types;

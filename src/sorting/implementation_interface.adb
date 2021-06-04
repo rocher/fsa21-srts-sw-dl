@@ -26,7 +26,7 @@ package body Implementation_Interface is
    begin
       if 2 <= List.Length then
          for I in 1 .. List.Length-1 loop
-            if List.Elements (I) >= List.Elements (I+1) then
+            if List.Elements (I) > List.Elements (I+1) then
                return False;
             end if;
          end loop;

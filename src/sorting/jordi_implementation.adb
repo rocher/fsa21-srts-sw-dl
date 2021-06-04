@@ -1,3 +1,4 @@
+with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Numerics.Discrete_Random;
 
 package body Jordi_Implementation is
@@ -44,11 +45,8 @@ package body Jordi_Implementation is
                            Which : Error_Name)
    is
       subtype Index_Range is Natural range 1 .. List.Length;
-      package Random_Index is new Ada.Numerics.Discrete_Random (Index_Range);
-      use Random_Index;
 
       Index : Index_Range;
-      RNG   : Random_Index.Generator;
    begin
       --Print(List);
       case Which is
@@ -56,23 +54,13 @@ package body Jordi_Implementation is
             case List.Length is
                when 0 => null;
                when 1 => null;
-               when 2 => Swap (List.Elements (1), List.Elements (2));
                when others =>
-                  declare
-                     I, J : Index_Range;
-                  begin
-                     loop
-                        I := Random (RNG);
-                        J := Random (RNG);
-                        exit when I /= J;
-                     end loop;
-                     Swap (List.Elements (I), List.Elements (J));
-                  end;
+                  Swap (List.Elements (List.Length-1), List.Elements (List.Length));
             end case;
 
          when Duplication =>
             if 1 <= List.Length and List.Length < Array_Of_Integers'Last then
-               Index := Random (RNG);
+               Index := List.Length;
                List.Length := List.Length + 1;
                for I in reverse Index+1 .. List.Length loop
                   List.Elements (I) := List.Elements (I-1);
@@ -81,7 +69,7 @@ package body Jordi_Implementation is
 
          when Omission =>
             if 0 < List.Length then
-               Index := Random (RNG);
+               Index := List.Length;
                for I in Index .. List.Length-1 loop
                   List.Elements (I) := List.Elements (I+1);
                end loop;
@@ -91,7 +79,8 @@ package body Jordi_Implementation is
 
          when None => null;
       end case;
-      Print(List);
+      Put_Line ("Jordi's List: ");
+      Print (List);
    end;
 
 end Jordi_Implementation;
